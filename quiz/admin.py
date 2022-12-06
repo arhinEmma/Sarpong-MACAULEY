@@ -8,6 +8,12 @@ from django.utils.translation import ugettext_lazy as _
 from .models import CSVUpload
 
 
+admin.site.site_header = "Admin"
+admin.site.site_title = "QUIZZ APP Admin Portal"
+admin.site.index_title = "Sarpong-MACAULEY school project-quizz app"
+
+
+
 class CSVUploadsAdmin(admin.ModelAdmin):
     model = CSVUpload
     list_display= ('title',)
