@@ -26,6 +26,14 @@ class CategoryManager(models.Manager):
         return new_category
 
 
+
+class Comment(models.Model):
+    topic = models.CharField(max_length=2000 ,blank=True,null=True)
+    description = models.CharField(max_length=2000 ,blank=True,null=True)
+
+    def __str__(self):
+        return self.topic
+
 class Category(models.Model):
 
     category = models.CharField(

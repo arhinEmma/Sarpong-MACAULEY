@@ -7,10 +7,20 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import FormView
 from .forms import QuestionForm
-from .models import Quiz, Category, Progress, Sitting, Question
+from .models import Quiz, Category, Progress, Sitting, Question,Comment
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+
+
+#mine added
+from django.shortcuts import  render, redirect
+from .forms import NewUserForm
+from django.contrib.auth import login
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_protect
+from django.template import RequestContext
 
 
 class QuizMarkerMixin(object):
@@ -236,8 +246,19 @@ class QuizTake(FormView):
 
 
 
-
+@csrf_protect
 def index(request):
+    if request.method == "POST":
+        topic = request.POST['topic']
+        description = request.POST['description']
+        # print(topic,description)
+        Comment.objects.create(topic=topic,description=description)
+
+        messages.success(request,"you have succesfully commented")
+        return redirect("index")
+
+
+    
     return render(request, 'index.html', {})
 
 
@@ -267,12 +288,7 @@ def logout_user(request):
 
 
 
-from django.shortcuts import  render, redirect
-from .forms import NewUserForm
-from django.contrib.auth import login
-from django.contrib import messages
 
-from django.views.decorators.csrf import csrf_protect
 
 @csrf_protect
 def register_request(request):
@@ -286,3 +302,4 @@ def register_request(request):
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
+

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 # Register your models here.
-from .models import Quiz, Category, Question, Progress
+from .models import Quiz, Category, Question, Progress ,Comment
 from mcq.models import MCQQuestion, Answer
 from django.utils.translation import ugettext_lazy as _
 from .models import CSVUpload
@@ -87,7 +87,7 @@ class ProgressAdmin(admin.ModelAdmin):
     """
     search_fields = ('user', 'score', )
 
-
+admin.site.register(Comment)
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(MCQQuestion, MCQuestionAdmin)

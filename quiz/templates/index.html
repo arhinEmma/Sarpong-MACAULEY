@@ -28,5 +28,25 @@
   </table>
 </div>
 
+  {% endif %}
+  {% if user.is_authenticated %}
+
+  <form  method="POST">{% csrf_token %}
+
+     <div class="form-group">
+    <label for="exampleFormControlInput1">Topic</label>
+    <input name="topic" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Topic here">
+  </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">comment here</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+    </div>
+
+    <button class="btn btn-primary" type="submit">comment</button>
+
+  </form>
+</div>
+
   {% endif %} {% endblock %}
 </div>
