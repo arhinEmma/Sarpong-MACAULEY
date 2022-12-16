@@ -6,6 +6,21 @@
   <p>Name: {{user.first_name}} {{user.last_name}}</p>
   <p>Email: {{user.email}}</p> {% endcomment %}
 
+
+  <li class="nav-tem" style="color: gray">
+    <a href="{% url 'quiz_index' %}" class="nav-link">
+
+  <button class="btn btn-primary" >Quizzes</button>
+
+    </a>
+  </li>
+  <li class="nav-tem" style="color: gray">
+    <a href="{% url 'quiz_progress' %}" class="nav-link">
+
+      <button class="btn btn-primary" >Progress</button>
+    </a>
+  </li>
+
   <table class="table bg-dark">
    
     <tbody>
